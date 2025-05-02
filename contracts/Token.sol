@@ -16,4 +16,5 @@ contract Token {
     }
     //Test commit from MBP
     //Test fetch, pull, edit, commit, push from iMac
+    //Test git via VScode UI - back at MBP
 }
