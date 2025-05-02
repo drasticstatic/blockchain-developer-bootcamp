@@ -14,4 +14,5 @@ contract Token {
         symbol = _symbol;
         totalSupply = _totalSupply * (10**decimals);// 1,000,000 x 10^18
     }
+    //Test commit from MBP
 }
