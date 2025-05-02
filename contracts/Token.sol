@@ -15,4 +15,5 @@ contract Token {
         totalSupply = _totalSupply * (10**decimals);// 1,000,000 x 10^18
     }
     //Test commit from MBP
+    //Test fetch, pull, edit, commit, push from iMac
 }
