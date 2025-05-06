@@ -6,12 +6,10 @@ const tokens = (n) => {
 }
 
 describe('Token', () => {
-  let token, accounts, deployer, receiver
-  /*
-    Added receiver variable to hold the second account
-    This will be used to test the transfer function
-    The receiver is the account that will receive the tokens
-  */
+  let token, accounts, deployer, receiver, exchange
+  // added exchange variable to hold the third account
+  // This will be used to test the approve function
+  // The exchange is the account that will be approved to spend tokens
 
   beforeEach(async () => {
     const Token = await ethers.getContractFactory('Token')
@@ -20,8 +18,8 @@ describe('Token', () => {
     accounts = await ethers.getSigners()
     deployer = accounts[0]
     receiver = accounts[1]
-    //The receiver is the second account '[1]' in the list of signers
-    //The deployer is the first account '[0]' in the list of signers
+    exchange = accounts[2]
+    // The exchange is the third account '[2]' in the list of signers
   })
 
   describe('Deployment', () => {
@@ -52,13 +50,11 @@ describe('Token', () => {
 
   })
 
-// ==================== ADD TRANSFER DESCRIBE BLOCK BELOW 4 TRANSFER FUNCTION ====================
 
   describe('Sending Tokens', () => {
     let amount, transaction, result
 
     describe('Success', () => {
-      // If successful, the transfer function will emit a Transfer event
 
       beforeEach(async () => {
         amount = tokens(100)
@@ -67,18 +63,14 @@ describe('Token', () => {
       })
 
       it('transfers token balances', async () => {
-        // Log balance before transfer
-        // Ensure token transfer was successful (balance was updated)
-        // Check the balance of the deployer and receiver
         expect(await token.balanceOf(deployer.address)).to.equal(tokens(999900))
         expect(await token.balanceOf(receiver.address)).to.equal(amount)
       })
 
       it('emits a Transfer event', async () => {
-        // Log balance after transfer
         const event = result.events[0]
         expect(event.event).to.equal('Transfer')
-        // Check the event aruments
+
         const args = event.args
         expect(args.from).to.equal(deployer.address)
         expect(args.to).to.equal(receiver.address)
@@ -87,26 +79,56 @@ describe('Token', () => {
 
     })
 
-    
     describe('Failure', () => {
-      // If the transfer fails, the transaction will be reverted
-      // The transfer function will revert if the sender does not have enough tokens
       it('rejects insufficient balances', async () => {
-            //  Linked to <require(_to != address(0));> in Token.sol
-        // Attempt to transfer tokens from the deployer to the receiver
-         // The deployer has 1000000 (1M) tokens, so this transfer should fail
-        const invalidAmount = tokens(100000000) //100M
+        const invalidAmount = tokens(100000000)
         await expect(token.connect(deployer).transfer(receiver.address, invalidAmount)).to.be.reverted
       })
 
       it('rejects invalid recipent', async () => {
-          // Linked to <require(_to != address(0));> in Token.sol//
-        // Attempt to transfer tokens to the zero address
-        // The zero address is an invalid address, so this transfer should fail
         const amount = tokens(100)
         await expect(token.connect(deployer).transfer('0x0000000000000000000000000000000000000000', amount)).to.be.reverted
       })
 
+    })
+
+  })
+
+  // ==================== ADD APPROVE DESCRIBE BLOCK BELOW 4 TRANSFER FUNCTION ====================
+  describe('Approving Tokens', () => {
+    let amount, transaction, result
+
+    beforeEach(async () => {
+      amount = tokens(100)
+      transaction = await token.connect(deployer).approve(exchange.address, amount)
+      result = await transaction.wait()
+    })
+
+    describe('Success', () => {
+      it('allocates an allowance for delegated token spending', async () => {
+        expect(await token.allowance(deployer.address, exchange.address)).to.equal(amount) // exchange.address instead of receiver.address
+      })
+
+      it('emits an Approval event', async () => {
+        const event = result.events[0]
+        expect(event.event).to.equal('Approval')
+
+        const args = event.args
+        // owner, spender vs from, to previously
+        expect(args.owner).to.equal(deployer.address)
+        expect(args.spender).to.equal(exchange.address) // again exchange.address
+        expect(args.value).to.equal(amount)
+      })
+
+    })
+
+    describe('Failure', () => {
+      it('rejects invalid spenders', async () => {
+          // Linked to <require(_spender != address(0));> in Token.sol
+        // Attempt to approve the zero address
+        // The zero address is an invalid address, so this approval should fail
+        await expect(token.connect(deployer).approve('0x0000000000000000000000000000000000000000', amount)).to.be.reverted
+      })
     })
 
   })
