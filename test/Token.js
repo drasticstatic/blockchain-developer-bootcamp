@@ -10,22 +10,18 @@ describe('Token', () => {
 
   beforeEach(async () => {
     const Token = await ethers.getContractFactory('Token')
-    token = await Token.deploy('Dapp University', 'DAPP', '1000000')
+    token = await Token.deploy('Dapp University', 'DAPPU', '1000000')
+    // 'DAPP' -> 'DAPPU'
 
     accounts = await ethers.getSigners()
     deployer = accounts[0]
     receiver = accounts[1]
     exchange = accounts[2]
-    /*
-      Added exchange variable to hold the third account
-      This will be used to test the approve and transferFrom functions
-      The exchange is the account that will be approved to spend tokens on behalf of the deployer
-    */
   })
 
   describe('Deployment', () => {
     const name = 'Dapp University'
-    const symbol = 'DAPP'
+    const symbol = 'DAPPU' // 'DAPP' -> 'DAPPU'
     const decimals = '18'
     const totalSupply = tokens('1000000')
 
@@ -94,8 +90,6 @@ describe('Token', () => {
     })
 
   })
-
-  // ==================== ADD APPROVE DESCRIBE BLOCK BELOW 4 APPROVE FUNCTION ====================
   
   describe('Approving Tokens', () => {
     let amount, transaction, result
@@ -154,8 +148,6 @@ describe('Token', () => {
       it('resets the allowance', async () => {
         expect(await token.allowance(deployer.address, exchange.address)).to.be.equal(0)
       })
-      // ↑ Added this test to check if the allowance is reset to 0 after transfer
-        // after transferFrom
 
       it('emits a Transfer event', async () => {
         const event = result.events[0]
@@ -170,8 +162,7 @@ describe('Token', () => {
     })
 
     describe('Failure', async () => {
-      // Attempt to transfer too many tokens
-      const invalidAmount = tokens(100000000) // 100 Million, greater than total supply
+      const invalidAmount = tokens(100000000)
       await expect(token.connect(exchange).transferFrom(deployer.address, receiver.address, invalidAmount)).to.be.reverted
     })
 
