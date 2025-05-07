@@ -7,9 +7,6 @@ const tokens = (n) => {
 
 describe('Token', () => {
   let token, accounts, deployer, receiver, exchange
-  // added exchange variable to hold the third account
-  // This will be used to test the approve function
-  // The exchange is the account that will be approved to spend tokens
 
   beforeEach(async () => {
     const Token = await ethers.getContractFactory('Token')
@@ -19,7 +16,11 @@ describe('Token', () => {
     deployer = accounts[0]
     receiver = accounts[1]
     exchange = accounts[2]
-    // The exchange is the third account '[2]' in the list of signers
+    /*
+      Added exchange variable to hold the third account
+      This will be used to test the approve and transferFrom functions
+      The exchange is the account that will be approved to spend tokens on behalf of the deployer
+    */
   })
 
   describe('Deployment', () => {
@@ -94,7 +95,8 @@ describe('Token', () => {
 
   })
 
-  // ==================== ADD APPROVE DESCRIBE BLOCK BELOW 4 TRANSFER FUNCTION ====================
+  // ==================== ADD APPROVE DESCRIBE BLOCK BELOW 4 APPROVE FUNCTION ====================
+  
   describe('Approving Tokens', () => {
     let amount, transaction, result
 
@@ -106,7 +108,7 @@ describe('Token', () => {
 
     describe('Success', () => {
       it('allocates an allowance for delegated token spending', async () => {
-        expect(await token.allowance(deployer.address, exchange.address)).to.equal(amount) // exchange.address instead of receiver.address
+        expect(await token.allowance(deployer.address, exchange.address)).to.equal(amount)
       })
 
       it('emits an Approval event', async () => {
@@ -114,9 +116,8 @@ describe('Token', () => {
         expect(event.event).to.equal('Approval')
 
         const args = event.args
-        // owner, spender vs from, to previously
         expect(args.owner).to.equal(deployer.address)
-        expect(args.spender).to.equal(exchange.address) // again exchange.address
+        expect(args.spender).to.equal(exchange.address)
         expect(args.value).to.equal(amount)
       })
 
@@ -124,11 +125,54 @@ describe('Token', () => {
 
     describe('Failure', () => {
       it('rejects invalid spenders', async () => {
-          // Linked to <require(_spender != address(0));> in Token.sol
-        // Attempt to approve the zero address
-        // The zero address is an invalid address, so this approval should fail
         await expect(token.connect(deployer).approve('0x0000000000000000000000000000000000000000', amount)).to.be.reverted
       })
+    })
+
+  })
+
+  describe('Delegated Token Transfers', () => {
+    let amount, transaction, result
+
+    beforeEach(async () => {
+      amount = tokens(100)
+      transaction = await token.connect(deployer).approve(exchange.address, amount)
+      result = await transaction.wait()
+    })
+
+    describe('Success', () => {
+      beforeEach(async () => {
+        transaction = await token.connect(exchange).transferFrom(deployer.address, receiver.address, amount)
+        result = await transaction.wait()
+      })
+
+      it('transfers token balances', async () => {
+        expect(await token.balanceOf(deployer.address)).to.be.equal(ethers.utils.parseUnits('999900', 'ether'))
+        expect(await token.balanceOf(receiver.address)).to.be.equal(amount)
+      })
+
+      it('resets the allowance', async () => {
+        expect(await token.allowance(deployer.address, exchange.address)).to.be.equal(0)
+      })
+      // ↑ Added this test to check if the allowance is reset to 0 after transfer
+        // after transferFrom
+
+      it('emits a Transfer event', async () => {
+        const event = result.events[0]
+        expect(event.event).to.equal('Transfer')
+
+        const args = event.args
+        expect(args.from).to.equal(deployer.address)
+        expect(args.to).to.equal(receiver.address)
+        expect(args.value).to.equal(amount)
+      })
+
+    })
+
+    describe('Failure', async () => {
+      // Attempt to transfer too many tokens
+      const invalidAmount = tokens(100000000) // 100 Million, greater than total supply
+      await expect(token.connect(exchange).transferFrom(deployer.address, receiver.address, invalidAmount)).to.be.reverted
     })
 
   })

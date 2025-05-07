@@ -11,10 +11,12 @@ contract Token {
 
     mapping(address => uint256) public balanceOf;
     mapping(address => mapping(address => uint256)) public allowance;
-    // Add allowance mapping to track the approved spending limit of each address
-        // This allows us to implement the approve and transferFrom functions
-        // The allowance mapping is a NESTED mapping that tracks the approved spending limit
-        // Note the key value pair
+    /* ↑ Added NESTED mapping
+        The allowance mapping is a NESTED mapping that tracks the approved spending limit
+        The first address is the owner of the tokens
+        The second address is the spender of the tokens
+        The value is the amount of tokens that the spender is allowed to spend on behalf of the owner
+        */
 
     event Transfer(
         address indexed from,
@@ -22,15 +24,17 @@ contract Token {
         uint256 value
     );
 
-        // Add event to log approvals
-        // This allows us to track when an address approves another address to spend its tokens
-        // The event is emitted when the approve function is called
     event Approval(
         address indexed owner,
         address indexed spender,
         uint256 value
     );
-        // Note again how varibales in evenets are state (w/out underscore)
+    /* ↑ Addec event to log approvals
+        This allows us to track when tokens are approved for spending
+        The event is emitted when the approve function is called
+        The indexed keyword allows us to filter events by the indexed parameters
+        The event is declared outside of the constructor and functions
+        */
 
     constructor(
         string memory _name,
@@ -48,23 +52,34 @@ contract Token {
         returns (bool success)
     {
         require(balanceOf[msg.sender] >= _value);
-        require(_to != address(0));
 
-        balanceOf[msg.sender] = balanceOf[msg.sender] - _value;
-        balanceOf[_to] = balanceOf[_to] + _value;
-
-        emit Transfer(msg.sender, _to, _value);
+        _transfer(msg.sender, _to, _value);
+        // ↑ Changed emit Transfer to _transfer
+            // to be used in the transfer function
 
         return true;
     }
 
-    // Add Approval function
-        // This function allows an address to approve another address to spend its tokens
-        // The function takes two parameters: the address to approve and the amount to approve
-        // The function checks if the spender address is valid (not zero address)
-        // The function updates the allowance mapping to set the approved spending limit
-        // The function emits an Approval event to log the approval
-        // The function returns true if the approval is successful
+    function _transfer(
+        address _from,
+        address _to,
+        uint256 _value
+    ) internal {
+        require(_to != address(0));
+
+        balanceOf[_from] = balanceOf[_from] - _value;
+        /* ↑ Check balance of the sender
+            The _from address is the owner of the tokens
+                Modified <_msg.sender> --> <_from>
+            The _to address is the recipient of the tokens
+            The _value is the amount of tokens to be transferred
+            */
+        balanceOf[_to] = balanceOf[_to] + _value;
+
+        emit Transfer(_from, _to, _value);
+    }        
+    // ↑ Added internal {}
+
     function approve(address _spender, uint256 _value)
         public
         returns(bool success)
@@ -74,7 +89,40 @@ contract Token {
         allowance[msg.sender][_spender] = _value;
 
         emit Approval(msg.sender, _spender, _value);
-        
+        return true;
+    }
+    // ↑ Added approve function
+        // The approve function allows the owner of the tokens to approve a third party to spend tokens on their behalf
+
+    function transferFrom(
+        address _from,
+        address _to,
+        uint256 _value
+    )
+        public
+        returns (bool success)
+    {
+        require(_value <= balanceOf[_from]);
+        /* ↑ Check balance of the sender
+        This is the key part of the transferFrom function
+            The transferFrom function allows a third party to transfer tokens on behalf of the owner
+            The _from address is the owner of the tokens
+            The _to address is the recipient of the tokens
+            The _value is the amount of tokens to be transferred
+        The transferFrom function is used to transfer tokens from one address to another
+        */
+        require(_value <= allowance[_from][msg.sender]);
+        // ↑ Check approval
+
+        allowance[_from][msg.sender] = allowance[_from][msg.sender] - _value;
+        // ↑ Reset the allowance
+            // This is the key part of the transferFrom function
+
+        _transfer(_from, _to, _value);
+        // ↑ Spending the allowance
+            // This is the key part of the transferFrom function
+            // The allowance mapping is a NESTED mapping that tracks the approved spending limit
+
         return true;
     }
 
