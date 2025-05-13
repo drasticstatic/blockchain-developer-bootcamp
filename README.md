@@ -65,22 +65,21 @@ Before getting started, make sure you have:
 ## Blockchain Development
 To start new project:
 
-   ## Hardhat:
-   > mkdir 'hardhat_example'
+   ### Hardhat:
+- mkdir 'hardhat_example'
+- cd 'hardhat_example'
 
-   > cd 'hardhat_example'
+- ```npm init --yes``` creates 'package.json'
 
-```npm init --yes``` creates 'package.json'
+- ```npm install --sav-dev hardhat```
 
-```npm install --sav-dev hardhat```
-
-```npx hardhat``` to create new project
+- ```npx hardhat``` to create new project
         
    >select "no" to installing dependencies
 
    >if selected "yes" , delete 'package-lock.json' & 'node_modules' directories
         
-#### Change package.json to reflect the following:
+- #### Change package.json to reflect the following:
 
       {
          "name": "hardhat_example",
@@ -103,21 +102,21 @@ To start new project:
          }
       }
 
-After updating 'package.json' , rerun: ```npm install```
+- After updating 'package.json' , rerun: ```npm install```
 
-#### Adjust hardhat.config.js to reflect the following:
+- #### Adjust hardhat.config.js to reflect the following:
 
-    require("@nomiclabs/hardhat-waffle");
+    Added ```require("@nomiclabs/hardhat-waffle");```
 
-    /** @type import('hardhat/config').HardhatUserConfig */
-    module.exports = {
-      solidity: "0.8.19",
-      networks: {
-        localhost: {}
-      },
-    };
+      /** @type import('hardhat/config').HardhatUserConfig */
+      module.exports = {
+         solidity: "0.8.19",
+         networks: {
+         localhost: {}
+         },
+      };
 
-        changing line 1: require("@nomicfoundation/hardhat-toolbox");
+   changing line 1: require("@nomicfoundation/hardhat-toolbox");
           to "@nomiclabs/hardhat-waffle"
 
 
