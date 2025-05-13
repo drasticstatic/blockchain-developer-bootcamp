@@ -23,9 +23,38 @@ Before getting started, make sure you have:
 
 1. Clone this repository
 2. Install dependencies:
-   ```
-   npm install
-   ```
+   
+   To check if node is installed:
+   ```node -v```
+   
+   >If not installed: ```curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash```
+   
+   Run: ```nvm -v```
+   
+   >If not installed:
+   
+   >>Since macOS 10.15, the default shell is zsh and nvm will look for .zshrc to update, none is installed by default. Create one with ```touch ~/.zshrc``` and run the install script again.
+            Rerun: ```curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash```
+
+
+   Use nvm to install the latest LTS release of Node.js ```nvm install --lts```
+
+      To install a specific version:
+               ```nvm install x.xx.x```
+                        ex: nvm install 8.16.2
+
+      Example to set the default version of node to use when starting a new shell to 10.0.0:
+         ```nvm alias default 10.0.0```
+                > nvm alias 20.10
+
+      To see the entire list of Node.js versions available to install, enter the following: ```nvm ls-remote```
+
+      To select a version:
+         ```nvm use xx``` >ex=: nvm use 22
+      
+      To upgrade npm to the latest version:```npm install npm --global```
+
+
 3. Create a `.env` file in the root directory with your private keys and API keys:
    ```
    PRIVATE_KEYS=your_private_key
@@ -34,8 +63,67 @@ Before getting started, make sure you have:
    ```
 
 ## Blockchain Development
+To start new project:
+
+   ## Hardhat:
+   > mkdir 'hardhat_example'
+
+   > cd 'hardhat_example'
+
+```npm init --yes``` creates 'package.json'
+
+```npm install --sav-dev hardhat```
+
+```npx hardhat``` to create new project
+        
+   >select "no" to installing dependencies
+
+   >if selected "yes" , delete 'package-lock.json' & 'node_modules' directories
+        
+#### Change package.json to reflect the following:
+
+      {
+         "name": "hardhat_example",
+         "version": "1.0.0",
+         "description": "",
+         "main": "index.js",
+         "scripts": {
+         "test": "echo \"Error: no test specified\" && exit 1"
+         },
+         "keywords": [],
+         "author": "",
+         "license": "ISC",
+         "devDependencies": {
+         "@nomiclabs/hardhat-ethers": "^2.0.6",
+         "@nomiclabs/hardhat-waffle": "^2.0.3",
+         "chai": "^4.3.6",
+         "ethereum-waffle": "^3.4.4",
+         "ethers": "^5.6.8",
+         "hardhat": "^2.9.7"
+         }
+      }
+
+After updating 'package.json' , rerun: ```npm install```
+
+#### Adjust hardhat.config.js to reflect the following:
+
+    require("@nomiclabs/hardhat-waffle");
+
+    /** @type import('hardhat/config').HardhatUserConfig */
+    module.exports = {
+      solidity: "0.8.19",
+      networks: {
+        localhost: {}
+      },
+    };
+
+        changing line 1: require("@nomicfoundation/hardhat-toolbox");
+          to "@nomiclabs/hardhat-waffle"
+
 
 ### Compile Smart Contracts
+   To create ABI - json description of smart contract
+   & byte code - human readable code --> machine code for EVM
 ```
 npx hardhat compile
 ```
@@ -50,15 +138,30 @@ npx hardhat test
 npx hardhat node
 npx hardhat run scripts/1_deploy.js --network localhost
 ```
+or
+```
+npx hardhat run --network localhost ./scripts/1_deploy.js
+```
 
 ### Deploy to Sepolia Testnet
 ```
 npx hardhat run scripts/1_deploy.js --network sepolia
 ```
 
+### Verify Contract on Etherscan
+```
+npx hardhat verify --network sepolia <contract address> <constructor args>
+```
+   Ex: > npx hardhat verify --network sepolia <contract address>“Dapp University” “DAPPU” “1000000”
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+   To create react app:
+   ```
+   npx create-react-app blockchain-developer-bootcamp --use-npm
+   ```
+      Modify app.js file in "src" directory to see reflected changes
 
 ## Available Scripts
 
