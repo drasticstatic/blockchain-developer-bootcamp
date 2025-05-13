@@ -1,3 +1,61 @@
+# Dapp University Bootcamp - Token Exchange
+
+This project is a blockchain-based token exchange application built during the Dapp University Bootcamp.
+Demonstrating how to create, deploy, and interact with Ethereum smart contracts.
+
+## Project Overview
+
+This application includes:
+- A custom ERC-20 token smart contract (DAPPU)
+- Smart contract testing with Hardhat
+- React frontend for interacting with the blockchain
+- Integration with MetaMask for wallet connectivity
+
+## Prerequisites
+
+Before getting started, make sure you have:
+- [Node.js](https://nodejs.org/) (v14+ recommended)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
+- [MetaMask](https://metamask.io/) browser extension
+- Basic knowledge of JavaScript, React, and blockchain concepts
+
+## Installation
+
+1. Clone this repository
+2. Install dependencies:
+   ```
+   npm install
+   ```
+3. Create a `.env` file in the root directory with your private keys and API keys:
+   ```
+   PRIVATE_KEYS=your_private_key
+   ALCHEMY_API_KEY=your_alchemy_api_key
+   ETHERSCAN_API_KEY=your_etherscan_api_key
+   ```
+
+## Blockchain Development
+
+### Compile Smart Contracts
+```
+npx hardhat compile
+```
+
+### Run Tests
+```
+npx hardhat test
+```
+
+### Deploy to Local Network
+```
+npx hardhat node
+npx hardhat run scripts/1_deploy.js --network localhost
+```
+
+### Deploy to Sepolia Testnet
+```
+npx hardhat run scripts/1_deploy.js --network sepolia
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
