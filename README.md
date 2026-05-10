@@ -228,6 +228,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# blockchain-developer-bootcamp
-
-- `/`: Test to make ensure VScode UI source control working again after ggshield pre-commit "command not found"
