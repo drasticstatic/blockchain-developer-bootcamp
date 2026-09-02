@@ -47,3 +47,9 @@
 ## Cross-Repo Rules
 
 See `AGENT-SYNC/CROSS_REPO_RULES.md` in `trading-assistant` for full governance.
+
+---
+
+## Commit Convention
+
+Footer: `Co-Authored-By: Alfred · Claude · [model] <noreply@anthropic.com>`
