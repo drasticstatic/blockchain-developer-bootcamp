@@ -1,4 +1,22 @@
+<!-- readme-standard: 2026-11-02 -->
+<div align="center">
+
+<img src="assets/banner.svg" width="100%" alt="Blockchain developer bootcamp: an illustrative run of candles, never data, for a class token exchange.">
+
 # Dapp University Bootcamp - Token Exchange
+
+![Status](https://img.shields.io/badge/Status-class_project-d9a441?style=flat-square)
+![For](https://img.shields.io/badge/For-Web3_learners-64748b?style=flat-square)
+
+<img src="assets/icons/map-pin.svg" width="16" height="16" alt=""> **You are here:** drasticstatic lab › DappU coursework › `blockchain-developer-bootcamp` · public · `main` is the working branch
+
+</div>
+
+## <img src="assets/icons/compass.svg" width="24" height="24" alt=""> TL;DR
+
+1. <img src="assets/icons/sprout.svg" width="16" height="16" alt=""> **What this is.** A token exchange built during the Dapp University Bootcamp: an ERC-20 contract, Hardhat tests and a React frontend.
+2. <img src="assets/icons/users-round.svg" width="16" height="16" alt=""> **Who it is for.** Anyone learning to write, deploy and talk to smart contracts.
+3. <img src="assets/icons/footprints.svg" width="16" height="16" alt=""> **Do this first.** Check the [prerequisites](#prerequisites), then follow [Installation](#installation).
 
 This project is a blockchain-based token exchange application built during the Dapp University Bootcamp.
 Demonstrating how to create, deploy, and interact with Ethereum smart contracts.
@@ -228,3 +246,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## <img src="assets/icons/git-pull-request.svg" width="24" height="24" alt=""> Suggest a change
+
+Noticed something? Open an [issue](../../issues) or a pull request against `main`; Christopher reads them and a person with the role merges. Not on GitHub? Reach Christopher through [his contact page](https://drasticstatic.github.io/resume/pages/contact.html).
+
+<sub>The front door follows the living [README standard](https://github.com/drasticstatic/my-template/blob/main/README-STANDARD.md). Copy it, improve it.</sub>
