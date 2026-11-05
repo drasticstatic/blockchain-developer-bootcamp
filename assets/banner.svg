@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="260" viewBox="0 0 1200 260" role="img" aria-labelledby="t d">
   <title id="t">blockchain-developer-bootcamp</title>
-  <desc id="d">A token exchange, built in class The picture: 14 candles arrive left to right with a line along their closes; the shapes are illustration, not data. With reduced motion, the finished picture shows at once.</desc>
+  <desc id="d">A token exchange, built in class The picture: 5 blocks arrive one by one, each linked to the one before; the shapes are illustration, not data. With reduced motion, the finished picture shows at once.</desc>
   <style>
     /* Motion only for readers who have not asked for less. Outside this block everything is in its finished state. */
     @media (prefers-reduced-motion: no-preference) {
@@ -16,32 +16,27 @@
     .halo { opacity: 0 }
   </style>
   <defs>
-    <linearGradient id="ground" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a2230"/><stop offset="1" stop-color="#101622"/></linearGradient>
-    <linearGradient id="line" gradientUnits="userSpaceOnUse" x1="668" y1="0" x2="1160" y2="0"><stop offset="0.00" stop-color="#8a6a2a"/><stop offset="0.50" stop-color="#d9a441"/><stop offset="1.00" stop-color="#e6d1a6"/></linearGradient>
-    <linearGradient id="fade" gradientUnits="userSpaceOnUse" x1="620" y1="0" x2="1200" y2="0"><stop offset="0" stop-color="#d9a441" stop-opacity="0"/><stop offset=".35" stop-color="#d9a441"/><stop offset="1" stop-color="#e6d1a6"/></linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a1a2e"/><stop offset="1" stop-color="#0f3460"/></linearGradient>
+    <linearGradient id="line" gradientUnits="userSpaceOnUse" x1="668" y1="0" x2="1160" y2="0"><stop offset="0.00" stop-color="#804c5a"/><stop offset="0.50" stop-color="#b87082"/><stop offset="1.00" stop-color="#ddb5bf"/></linearGradient>
+    <linearGradient id="fade" gradientUnits="userSpaceOnUse" x1="620" y1="0" x2="1200" y2="0"><stop offset="0" stop-color="#b87082" stop-opacity="0"/><stop offset=".35" stop-color="#b87082"/><stop offset="1" stop-color="#ddb5bf"/></linearGradient>
     <clipPath id="card"><rect width="1200" height="260" rx="18"/></clipPath>
+    <radialGradient id="ember" gradientUnits="userSpaceOnUse" cx="962" cy="124" r="390"><stop offset="0" stop-color="#800020" stop-opacity=".8"/><stop offset=".6" stop-color="#5c1a2b" stop-opacity=".45"/><stop offset="1" stop-color="#5c1a2b" stop-opacity="0"/></radialGradient>
   </defs>
   <g clip-path="url(#card)">
     <!-- an opaque ground: the same picture on GitHub's light and dark themes -->
     <rect width="1200" height="260" fill="url(#ground)"/>
-    <g class="arrive" style="animation-delay:0.25s"><path d="M696.7 158.9V212.0" stroke="#d9a441" stroke-width="1.5"/><rect x="686.7" y="181.0" width="20.1" height="19.1" rx="1" fill="#d9a441"/></g>
-    <g class="arrive" style="animation-delay:0.44s"><path d="M730.1 146.4V183.4" stroke="#d9a441" stroke-width="1.5"/><rect x="720.1" y="148.7" width="20.1" height="32.3" rx="1" fill="#d9a441"/></g>
-    <g class="arrive" style="animation-delay:0.62s"><path d="M763.6 130.8V171.4" stroke="#705c38" stroke-width="1.5"/><rect x="753.5" y="148.7" width="20.1" height="17.8" rx="1" fill="#101622" stroke="#705c38" stroke-width="1.5"/></g>
-    <g class="arrive" style="animation-delay:0.81s"><path d="M797.0 130.2V194.4" stroke="#d9a441" stroke-width="1.5"/><rect x="787.0" y="141.5" width="20.1" height="24.9" rx="1" fill="#d9a441"/></g>
-    <g class="arrive" style="animation-delay:0.99s"><path d="M830.4 134.2V143.8" stroke="#d9a441" stroke-width="1.5"/><rect x="820.4" y="141.1" width="20.1" height="2.0" rx="1" fill="#d9a441"/></g>
-    <g class="arrive" style="animation-delay:1.18s"><path d="M863.9 106.7V151.1" stroke="#d9a441" stroke-width="1.5"/><rect x="853.8" y="115.9" width="20.1" height="25.2" rx="1" fill="#d9a441"/></g>
-    <g class="arrive" style="animation-delay:1.36s"><path d="M897.3 76.4V119.2" stroke="#d9a441" stroke-width="1.5"/><rect x="887.3" y="101.1" width="20.1" height="14.8" rx="1" fill="#d9a441"/></g>
-    <g class="arrive" style="animation-delay:1.55s"><path d="M930.7 68.2V118.0" stroke="#d9a441" stroke-width="1.5"/><rect x="920.7" y="73.6" width="20.1" height="27.5" rx="1" fill="#d9a441"/></g>
-    <g class="arrive" style="animation-delay:1.74s"><path d="M964.1 41.1V89.2" stroke="#d9a441" stroke-width="1.5"/><rect x="954.1" y="53.6" width="20.1" height="20.0" rx="1" fill="#d9a441"/></g>
-    <g class="arrive" style="animation-delay:1.92s"><path d="M997.6 38.0V68.1" stroke="#d9a441" stroke-width="1.5"/><rect x="987.5" y="51.4" width="20.1" height="2.2" rx="1" fill="#d9a441"/></g>
-    <g class="arrive" style="animation-delay:2.11s"><path d="M1031.0 44.7V76.8" stroke="#705c38" stroke-width="1.5"/><rect x="1021.0" y="51.4" width="20.1" height="11.2" rx="1" fill="#101622" stroke="#705c38" stroke-width="1.5"/></g>
-    <g class="arrive" style="animation-delay:2.29s"><path d="M1064.4 46.0V99.0" stroke="#705c38" stroke-width="1.5"/><rect x="1054.4" y="62.6" width="20.1" height="19.7" rx="1" fill="#101622" stroke="#705c38" stroke-width="1.5"/></g>
-    <g class="arrive" style="animation-delay:2.48s"><path d="M1097.9 56.0V110.9" stroke="#705c38" stroke-width="1.5"/><rect x="1087.8" y="82.3" width="20.1" height="2.0" rx="1" fill="#101622" stroke="#705c38" stroke-width="1.5"/></g>
-    <g class="arrive" style="animation-delay:2.66s"><path d="M1131.3 44.2V102.9" stroke="#d9a441" stroke-width="1.5"/><rect x="1121.3" y="52.5" width="20.1" height="30.6" rx="1" fill="#d9a441"/></g>
-    <path class="draw" pathLength="100" d="M696.7 181.0 L730.1 148.7 L763.6 166.5 L797.0 141.5 L830.4 141.1 L863.9 115.9 L897.3 101.1 L930.7 73.6 L964.1 53.6 L997.6 51.4 L1031.0 62.6 L1064.4 82.3 L1097.9 83.1 L1131.3 52.5" fill="none" stroke="#e6d1a6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation-delay:1.80s"/>
-    <circle class="halo" cx="1131.3" cy="52.5" r="9" fill="none" stroke="#e6d1a6" stroke-width="2"/>
-    <circle cx="1131.3" cy="52.5" r="4.5" fill="#e6d1a6"/>
-    <rect x="0.0" y="248" width="300.5" height="12" fill="#334155"/><rect x="300.0" y="248" width="300.5" height="12" fill="#8a6a2a"/><rect x="600.0" y="248" width="300.5" height="12" fill="#d9a441"/><rect x="900.0" y="248" width="300.5" height="12" fill="#f1f5f9"/>
-    <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif"><text x="56" y="54.1" fill="#d9a441" font-size="15" font-weight="700" letter-spacing=".6">DappU mentorship</text><text x="56" y="106.2" fill="#f1f5f9" font-size="46" font-weight="700" letter-spacing="-.5">blockchain-developer-</text><text x="56" y="157.8" fill="#f1f5f9" font-size="46" font-weight="700" letter-spacing="-.5">bootcamp</text><text x="56" y="199.3" fill="#d3d7dd" font-size="23">A token exchange, built in class</text></g>
+    <rect width="1200" height="260" fill="url(#ember)"/>
+    <g class="arrive" style="animation-delay:0.75s" transform="rotate(7.7 764.8 94.9)" fill="none" stroke-width="2.5"><rect x="740.1" y="87.9" width="26.7" height="14.0" rx="7.0" stroke="#b87082"/><rect x="762.8" y="87.9" width="26.7" height="14.0" rx="7.0" stroke="#ddb5bf"/></g>
+    <g class="arrive" style="animation-delay:1.25s" transform="rotate(24.6 864.3 124.3)" fill="none" stroke-width="2.5"><rect x="839.5" y="117.3" width="26.7" height="14.0" rx="7.0" stroke="#b87082"/><rect x="862.3" y="117.3" width="26.7" height="14.0" rx="7.0" stroke="#ddb5bf"/></g>
+    <g class="arrive" style="animation-delay:1.75s" transform="rotate(8.7 963.7 154.7)" fill="none" stroke-width="2.5"><rect x="939.0" y="147.7" width="26.7" height="14.0" rx="7.0" stroke="#b87082"/><rect x="961.7" y="147.7" width="26.7" height="14.0" rx="7.0" stroke="#ddb5bf"/></g>
+    <g class="arrive" style="animation-delay:2.25s" transform="rotate(-19.8 1063.2 144.4)" fill="none" stroke-width="2.5"><rect x="1038.5" y="137.4" width="26.7" height="14.0" rx="7.0" stroke="#b87082"/><rect x="1061.2" y="137.4" width="26.7" height="14.0" rx="7.0" stroke="#ddb5bf"/></g>
+    <g class="arrive" style="animation-delay:0.30s"><rect x="680.0" y="53.2" width="70.1" height="70.1" rx="9.8" fill="#121424" stroke="#b87082" stroke-width="2.5"/><rect x="681.2" y="54.4" width="67.6" height="18.2" rx="7.7" fill="#800020"/><path d="M689.0 84.3h47.0" stroke="#ddb5bf" stroke-width="2" stroke-linecap="round"/><path d="M689.0 97.3h38.4" stroke="#614154" stroke-width="2" stroke-linecap="round"/><path d="M689.0 110.3h50.5" stroke="#614154" stroke-width="2" stroke-linecap="round"/></g>
+    <g class="arrive" style="animation-delay:0.80s"><rect x="779.5" y="66.5" width="70.1" height="70.1" rx="9.8" fill="#121424" stroke="#b87082" stroke-width="2.5"/><rect x="780.7" y="67.8" width="67.6" height="18.2" rx="7.7" fill="#800020"/><path d="M788.5 97.7h30.5" stroke="#ddb5bf" stroke-width="2" stroke-linecap="round"/><path d="M788.5 110.7h30.6" stroke="#614154" stroke-width="2" stroke-linecap="round"/><path d="M788.5 123.6h29.7" stroke="#614154" stroke-width="2" stroke-linecap="round"/></g>
+    <g class="arrive" style="animation-delay:1.30s"><rect x="879.0" y="112.0" width="70.1" height="70.1" rx="9.8" fill="#121424" stroke="#b87082" stroke-width="2.5"/><rect x="880.2" y="113.3" width="67.6" height="18.2" rx="7.7" fill="#800020"/><path d="M888.0 143.2h43.4" stroke="#ddb5bf" stroke-width="2" stroke-linecap="round"/><path d="M888.0 156.1h32.7" stroke="#614154" stroke-width="2" stroke-linecap="round"/><path d="M888.0 169.1h47.4" stroke="#614154" stroke-width="2" stroke-linecap="round"/></g>
+    <g class="arrive" style="animation-delay:1.80s"><rect x="978.5" y="127.3" width="70.1" height="70.1" rx="9.8" fill="#121424" stroke="#b87082" stroke-width="2.5"/><rect x="979.7" y="128.5" width="67.6" height="18.2" rx="7.7" fill="#800020"/><path d="M987.5 158.5h38.0" stroke="#ddb5bf" stroke-width="2" stroke-linecap="round"/><path d="M987.5 171.4h51.8" stroke="#614154" stroke-width="2" stroke-linecap="round"/><path d="M987.5 184.4h37.2" stroke="#614154" stroke-width="2" stroke-linecap="round"/></g>
+    <g class="arrive" style="animation-delay:2.30s"><rect x="1077.9" y="91.5" width="70.1" height="70.1" rx="9.8" fill="#121424" stroke="#b87082" stroke-width="2.5"/><rect x="1079.2" y="92.7" width="67.6" height="18.2" rx="7.7" fill="#800020"/><path d="M1086.9 122.6h34.4" stroke="#ddb5bf" stroke-width="2" stroke-linecap="round"/><path d="M1086.9 135.6h30.5" stroke="#614154" stroke-width="2" stroke-linecap="round"/><path d="M1086.9 148.6h47.5" stroke="#614154" stroke-width="2" stroke-linecap="round"/></g>
+    <circle class="halo" cx="1113.0" cy="126.5" r="43" fill="none" stroke="#ddb5bf" stroke-width="2"/>
+    <rect x="0.0" y="248" width="300.5" height="12" fill="#1a1a2e"/><rect x="300.0" y="248" width="300.5" height="12" fill="#5c1a2b"/><rect x="600.0" y="248" width="300.5" height="12" fill="#800020"/><rect x="900.0" y="248" width="300.5" height="12" fill="#fbeef1"/>
+    <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif"><text x="56" y="54.1" fill="#c78f9d" font-size="15" font-weight="700" letter-spacing=".6">DappU mentorship</text><text x="56" y="106.2" fill="#fbeef1" font-size="46" font-weight="700" letter-spacing="-.5">blockchain-developer-</text><text x="56" y="157.8" fill="#fbeef1" font-size="46" font-weight="700" letter-spacing="-.5">bootcamp</text><text x="56" y="199.3" fill="#dcd0d6" font-size="23">A token exchange, built in class</text></g>
   </g>
 </svg>

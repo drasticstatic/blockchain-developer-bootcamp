@@ -1,11 +1,11 @@
 <!-- readme-standard: 2026-11-02 -->
 <div align="center">
 
-<img src="assets/banner.svg" width="100%" alt="Blockchain developer bootcamp: an illustrative run of candles, never data, for a class token exchange.">
+<img src="assets/banner.svg" width="100%" alt="Blockchain developer bootcamp: linked blocks arrive one by one, illustration and never a real chain's data, for a class token exchange.">
 
 # Dapp University Bootcamp - Token Exchange
 
-![Status](https://img.shields.io/badge/Status-class_project-d9a441?style=flat-square)
+![Status](https://img.shields.io/badge/Status-class_project-800020?style=flat-square)
 ![For](https://img.shields.io/badge/For-Web3_learners-64748b?style=flat-square)
 
 <img src="assets/icons/map-pin.svg" width="16" height="16" alt=""> **You are here:** drasticstatic lab › DappU coursework › `blockchain-developer-bootcamp` · public · `main` is the working branch
