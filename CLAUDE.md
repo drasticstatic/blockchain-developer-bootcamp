@@ -48,7 +48,7 @@ the commit-attribution hook stays inert until this clone is pointed at `.githook
 
 - Memory files live in `~/.claude/projects/.../memory/` — MEMORY.md auto-loaded each session
 - AGENT-SYNC is private — never reference its contents in public-facing files
-- Cross-repo privacy firewall: Alfred does not pass trading or divorce-custody data between repos without explicit instruction
+- Cross-repo privacy firewall: Alfred does not pass trading or family-matters data between repos without explicit instruction
 
 ---
 
